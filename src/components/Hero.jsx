@@ -10,7 +10,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-indigo-600/15 via-slate-950 to-slate-950 -z-10" />
             <div className="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-pink-500/10 to-indigo-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 -z-10" />
 
-            <div className="max-w-5xl text-center space-y-8">
+            <div className="max-w-11/12 text-center space-y-8">
                 <div
                     className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/5 text-pink-400 text-xs font-semibold uppercase tracking-wider"
                 >
@@ -18,7 +18,7 @@ const Hero = () => {
                 </div>
 
                 <h1
-                    className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight"
+                    className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
                 >
                     Discover Premium Events &{" "}
                     <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
@@ -34,9 +34,9 @@ const Hero = () => {
                 </p>
 
                 <div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
+                    // initial={{ opacity: 0, y: 30 }}
+                    // animate={{ opacity: 1, y: 0 }}
+                    // transition={{ duration: 0.8, delay: 0.3 }}
                     className="flex flex-col sm:flex-row justify-center items-center gap-4"
                 >
                     <Link href="/events">
