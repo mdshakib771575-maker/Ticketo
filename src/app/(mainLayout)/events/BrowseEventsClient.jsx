@@ -1,0 +1,50 @@
+"use client"
+import { Suspense } from "react";
+import { Card, Button } from "@heroui/react";
+import FilterPanel from "@/components/FilterPanel";
+import EventCard from "@/components/EventCard";
+import { AllEvent } from "@/lib/api/events/data";
+
+export default  function BrowseEventsClientPage({events}) {
+
+  
+    return (
+        <div className="min-h-screen py-4 px-6 w-11/12 mx-auto  space-y-12">
+            {/* HEADER */}
+            <div className=" space-y-2">
+                <h1 className="text-4xl font-extrabold text-center  tracking-tight text-white">Browse Premium Events</h1>
+                <p className="text-slate-400 text-sm  text-center flex justify-center">
+                    Search, filter, and discover state-of-the-art events. Instant Stripe booking guarantees your seat.
+                </p>
+            </div>
+
+            {/* Interactive client-side filters wrapped in Suspense */}
+            <Suspense fallback={<div className="h-28 w-full glass animate-pulse rounded-2xl" />}>
+                <FilterPanel />
+            </Suspense>
+
+            {/* Server component events list wrapped in Suspense */}
+            <Suspense fallback={
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {Array(6).fill(0).map((_, i) => (
+                        <Card key={i} className="bg-slate-900/50 border border-white/5 p-4 space-y-4 animate-pulse">
+                            <div className="h-48 rounded-xl bg-slate-800" />
+                            <div className="space-y-3">
+                                <div className="h-4 bg-slate-800 w-3/5 rounded-lg" />
+                                <div className="h-6 bg-slate-800 w-4/5 rounded-lg" />
+                                <div className="h-4 bg-slate-800 w-2/5 rounded-lg" />
+                            </div>
+                        </Card>
+                    ))}
+                </div>
+            }>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {events.map((event) => (
+                        <EventCard key={event._id} event={event} buttonText="View Details" />
+                    ))}
+                </div>
+            </Suspense>
+        </div>
+    );
+}
+

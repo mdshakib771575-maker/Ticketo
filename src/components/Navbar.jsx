@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FaTicketAlt, FaUser, FaSignOutAlt, FaThLarge } from "react-icons/fa";
 import Logo from "./Logo";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeSwitch2 from "./ThemeSwitcher";
 
 import { authClient, useSession } from "@/lib/auth-client";
-import { router } from "better-auth/api";
+// import { router } from "better-auth/api";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -30,11 +30,11 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await authClient.signOut();
-    router.push("/")
+    // router.push("/")
   };
 
 
-  console.log(session)
+  // console.log(session)
   // const mockUser = {
   //   name: "Jane Doe",
   //   email: "jane@example.com",
@@ -62,9 +62,10 @@ export default function Navbar() {
           >
             Browse Events
           </Link>
+       
           {session && session?.user && (
             <Link
-              href={"/"}
+              href={`/dashboard/${session?.user?.role}`}
               className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard") ? "text-pink-500 font-semibold" : "text-slate-300 hover:text-white"}`}
             >
               Dashboard
@@ -78,6 +79,7 @@ export default function Navbar() {
 
           {!session && (
             <div className="flex items-center gap-3">
+            
               <Link href={'/login'}>
                 <button
 
@@ -94,8 +96,12 @@ export default function Navbar() {
               </Link>
             </div>
           )}
-
+        
+        
           {session && session?.user && (
+              <div className="border rounded-2xl flex gap-5">
+    
+         
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -129,11 +135,11 @@ export default function Navbar() {
                     <span>My Dashboard</span>
                   </Link>
 
-                  <Link
-                    href={`/dashboard/${session?.user?.role}`}
-                    onClick={() => setDropdownOpen(false)}
-                    className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition cursor-pointer"
-                  >
+                    <Link
+                      href={`/dashboard/${session?.user?.role}`}
+                      onClick={() => setDropdownOpen(false)}
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition cursor-pointer"
+                    >
                     <FaUser className="text-slate-400 text-sm shrink-0" />
                     <span>Profile Settings</span>
                   </Link>
@@ -150,6 +156,7 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+                </div>
           )}
         </div>
       </div>

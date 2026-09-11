@@ -1,4 +1,4 @@
-import OrganizerSidebar from "@/components/OrganizerSidebar";
+import OrganizerSidebar from "@/components/DashboardSidebar";
 
 const DashboardLayout = ({ children }) => {
   return (

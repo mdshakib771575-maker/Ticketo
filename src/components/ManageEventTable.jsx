@@ -1,4 +1,4 @@
-const ManageEventTable = () => {
+export const ManageEventTable = () => {
     return (
         <div className="mt-6">
             <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">

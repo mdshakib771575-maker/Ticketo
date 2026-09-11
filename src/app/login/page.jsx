@@ -27,7 +27,7 @@ const LoginPage = () => {
                       redirect("/")
                   }
           
-                  console.log(signInData, signInError);
+                //   console.log(signInData, signInError);
               }
     return (
        <Card className="w-full max-w-md border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4 mx-auto">
@@ -85,9 +85,10 @@ const LoginPage = () => {
                     variant="bordered"
                     className="w-full border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold h-11"
                     radius="lg"
-                    startContent={<FaGoogle className="text-pink-500" />}
+                   
                 >
-                    Google Account
+                    <FaGoogle />
+                    Google OAuth
                 </Button>
 
                 <p className="text-center text-sm text-slate-400 mt-6">
