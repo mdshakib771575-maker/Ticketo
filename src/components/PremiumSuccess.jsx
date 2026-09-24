@@ -7,12 +7,14 @@ import { FaCrown, FaExclamationTriangle, FaCheckCircle, FaArrowRight } from "rea
 import { Suspense } from "react";
 
 
-export default function PremiumSuccessPage() {
+export default function PremiumSuccessPage({customer_email}) {
     const loading = false;
     const success = true;
     const error = "";
+
+   
     return (
-        <div className="min-h-[80vh] flex items-center justify-center bg-[#080c16] px-6 py-12">
+        <div className="min-h-[80vh] flex items-center justify-center bg-[#080c16] px-6 py-5">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950 -z-10" />
 
             <Card className="w-full max-w-lg border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4">
@@ -51,7 +53,7 @@ export default function PremiumSuccessPage() {
                                 Upgrade Successful!
                             </h1>
                             <p className="text-slate-400 text-sm mt-1">
-                                You are now a Premium Organizer.
+                              {customer_email}  You are now a Premium Organizer.
                             </p>
                         </CardHeader>
 

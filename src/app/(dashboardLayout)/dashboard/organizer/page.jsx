@@ -1,18 +1,39 @@
 "use client"
 import DashboardHeading from '@/components/DashboardHeading';
+
+import { useSession } from '@/lib/auth-client';
 import { Button, Card } from '@heroui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaCalendarAlt, FaCrown, FaDollarSign, FaUsers } from 'react-icons/fa';
 
 const OrganizerOverviewPage = () => {
-     const stats = {
+    const stats = {
         totalEvents: 15,
         totalAttendees: 450,
         totalRevenue: 25000,
         totalSoldTickets: 780,
     };
+    const { data: session } = useSession()
 
-    const isPremium = false;
+    const user = session?.user
+    // console.log(user);
+
+    const isPremium = user?.isPremium;
+
+
+    const UpdateToPremium = async () => {
+        const res = await fetch("/api/checkout_sessions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await res.json()
+        console.log(data);
+        if (data.url) {
+            window.location.href = data.url
+        }
+    }
 
     return (
         <div className="space-y-6 mt-2 ">
@@ -47,19 +68,30 @@ const OrganizerOverviewPage = () => {
                 </Card>
             </div>
 
-            {!isPremium && (
+            {!isPremium ? (
                 <Card className="border border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 via-amber-600/5 to-transparent relative overflow-hidden" radius="lg">
                     <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
                         <div className="space-y-2">
                             <h3 className="text-xl font-bold text-white flex items-center gap-2"><FaCrown className="text-yellow-400" /> Unlock Unlimited Event Creation</h3>
                             <p className="text-slate-400 text-xs max-w-xl leading-relaxed">Standard organizer accounts are limited to <strong>3 events</strong>. Upgrade to our Premium Package for <strong>$49.00</strong> to host unlimited events.</p>
                         </div>
-                        <Button className="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
+                        <Button onClick={UpdateToPremium} className="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
                             Upgrade to Premium
                         </Button>
                     </div>
                 </Card>
-            )}
+            ) :
+                <Card className="border border-green-500/20 bg-gradient-to-r from-yellow-500/5 via-amber-600/5 to-transparent relative overflow-hidden" radius="lg">
+                    <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
+                        <div className="space-y-2">
+                            <h3 className="text-xl font-bold text-white flex items-center gap-2"><FaCrown className="text-green-400" /> WellCome to Premeum Dashboard</h3>
+                            <p className="text-slate-400 text-xs max-w-xl leading-relaxed">You can create more then 3 evetns Naw....</p>
+                        </div>
+                        {/* <Button className="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
+                            Upgrade to Premium
+                        </Button> */}
+                    </div>
+                </Card>}
         </div>
     )
 };

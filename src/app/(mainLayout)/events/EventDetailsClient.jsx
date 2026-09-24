@@ -10,9 +10,10 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaArrowLeft } from "react-icons/fa";
 
 import BookingWidget from "@/components/BookingWidget";
 
-export const EventDetailsClient = ({event}) => {
+export const EventDetailsClient = ({ event }) => {
+    console.log(typeof(event.price));
     return (
-          <div className="min-h-screen py-16 px-6 max-w-11/12 mx-auto w-full space-y-12">
+        <div className="min-h-screen py-16 px-6 max-w-11/12 mx-auto w-full space-y-12">
             {/* Back Button */}
             <Link href="/events">
                 <Button
@@ -83,7 +84,7 @@ export const EventDetailsClient = ({event}) => {
 
                 {/* Right Column: Ticket Booking Widget */}
                 <div className="space-y-6">
-                    <BookingWidget Price={event?.price} availableSeats={event?.capacity} eventId={event?._id} eventTitle={event?.title} />
+                    <BookingWidget ticketPrice={event?.price} availableSeats={event?.capacity} eventId={event?._id} eventTitle={event?.title} />
                 </div>
             </div>
         </div>

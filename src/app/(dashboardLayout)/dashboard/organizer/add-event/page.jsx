@@ -167,6 +167,7 @@ const AddEventPage = () => {
                                         <Input id="event-price"
                                             {...register("price", {
                                                 required: "Price is required",
+                                                  valueAsNumber: true,
                                             })}
                                             type="number"
                                             min={0} step="any"
@@ -186,6 +187,7 @@ const AddEventPage = () => {
                                         <Input id="event-seats"
                                             {...register("capacity", {
                                                 required: "Capacity is required",
+                                                  valueAsNumber: true,
 
                                             })}
                                             type="number" min={1}
