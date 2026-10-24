@@ -36,9 +36,12 @@ export default function PremiumSuccessPage({customer_email}) {
                             {error || "We encountered an error validating your premium payment session. Please contact support."}
                         </p>
                         <CardFooter className="justify-center pt-6">
-                            <Button as={Link} href="/dashboard/organizer" className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11 px-6" radius="lg">
+                        <Link href={"/dashboard/organizer"}>
+                       
+                            <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11 px-6" radius="lg">
                                 Back to Dashboard
                             </Button>
+                             </Link>
                         </CardFooter>
                     </CardBody>
                 )}
@@ -68,15 +71,15 @@ export default function PremiumSuccessPage({customer_email}) {
                         </CardBody>
 
                         <CardFooter className="flex pt-8 justify-center">
+                            <Link href={"/dashboard/organizer"}>
                             <Button
-                                as={Link}
-                                href="/dashboard/organizer"
                                 className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-950 font-extrabold h-11 px-8 shadow-lg shadow-yellow-500/10 hover:shadow-yellow-500/20"
                                 radius="lg"
                                 endContent={<FaArrowRight />}
                             >
                                 Go to Dashboard
                             </Button>
+                            </Link>
                         </CardFooter>
                     </>
                 )}

@@ -6,39 +6,39 @@ import { FaCheck } from "react-icons/fa";
 import { useSession } from "@/lib/auth-client";
 
 export default function BookingWidget({ ticketPrice, availableSeats, eventId, eventTitle }) {
- console.log(typeof(ticketPrice));
+  //  console.log(typeof(ticketPrice));
   const isSoldOut = availableSeats <= 0;
 
   const { data: session } = useSession();
   const user = session?.user;
-  const [quentity, SetQuentity] = useState(0);
+  const [quantity, SetQuantity] = useState(1);
   // console.log(quentity);
 
-  const totalAmount = (ticketPrice?.toFixed(2) * quentity).toFixed(2)
+  const totalAmount = (ticketPrice?.toFixed(2) * quantity).toFixed(2)
 
   const handalBookTicket = async () => {
-    const UpdateToPremium = async () => {
 
-      const paymentData = {
-        type: "booking",
-        totalAmount,
-        eventId,
-        eventTitle,
-        quentity,
-      }
-      const res = await fetch("/api/checkout_sessions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body:JSON.stringify(paymentData)
-      })
-      const data = await res.json()
-      console.log(data);
-      if (data.url) {
-        window.location.href = data.url
-      }
+    const paymentData = {
+      type: "booking",
+      ticketPrice: Number(ticketPrice.toFixed(2)),
+      eventId,
+      eventTitle,
+      quantity: Number(quantity),
+    };
+    const res = await fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(paymentData)
+    })
+    const data = await res.json()
+    console.log(data);
+    console.log(data.url);
+    if (data.url) {
+      window.location.href = data.url
     }
+
   }
 
   return (
@@ -71,15 +71,15 @@ export default function BookingWidget({ ticketPrice, availableSeats, eventId, ev
             {!isSoldOut && (
               <>
                 {/* Quantity selector */}
-                <label htmlFor="">Quantiy :</label>
+                <label htmlFor="" className="text-slate-400">Quantiy :</label>
                 <Input
-                  onChange={(e) => SetQuentity(Number(e.target.value))}
+                  onChange={(e) => SetQuantity(Number(e.target.value))}
                   type="number"
                   label="Quantity"
-                  placeholder="0"
+                  value={quantity}
                   min={1}
                   max={availableSeats}
-                  className="bg-slate-900/50 ml-3 border  hover:border-pink-500/50 focus-within:!border-pink-500"
+                  className="bg-slate-900/50 ml-3 border border-white/5  hover:border-pink-500/50 focus-within:!border-pink-500"
                 />
 
                 <div className="flex justify-between  items-center text-sm font-semibold text-white pt-2">
@@ -91,16 +91,38 @@ export default function BookingWidget({ ticketPrice, availableSeats, eventId, ev
               </>
             )}
 
-            <Button
+            {/* <Button
+              onClick={handalBookTicket}
               isDisabled={isSoldOut}
-              className={`w-full font-bold h-12 shadow-lg ${isSoldOut
+              className={`w-full  font-bold h-12 shadow-lg ${isSoldOut
                 ? "bg-slate-800 text-slate-500 shadow-none cursor-not-allowed"
                 : "bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-pink-500/10 hover:shadow-pink-500/20"
                 }`}
               radius="lg"
             >
               {isSoldOut ? "Sold Out" : "Book Ticket Now"}
+            </Button> */}
+
+
+
+            <Button
+              onClick={handalBookTicket}
+              isDisabled={isSoldOut}
+              className={`w-full h-12 font-bold transition-all duration-200 ${isSoldOut
+                  ? "bg-slate-800 text-slate-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-lg hover:shadow-pink-500/35 hover:brightness-100 active:scale-95"
+                }`}
+              radius="lg"
+            >
+              {isSoldOut ? "Sold Out" : "Book Ticket Now"}
             </Button>
+
+
+
+
+
+
+
 
             <div className="flex items-center gap-2 text-[11px] text-slate-400 text-center justify-center pt-2">
               <FaCheck className="text-green-500 shrink-0" />

@@ -11,7 +11,7 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaArrowLeft } from "react-icons/fa";
 import BookingWidget from "@/components/BookingWidget";
 
 export const EventDetailsClient = ({ event }) => {
-    console.log(typeof(event.price));
+    // console.log(typeof(event.price));
     return (
         <div className="min-h-screen py-16 px-6 max-w-11/12 mx-auto w-full space-y-12">
             {/* Back Button */}

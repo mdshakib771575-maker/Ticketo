@@ -4,10 +4,12 @@ import { useSession } from '@/lib/auth-client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { usePathname } from "next/navigation";
 import { FaBuilding, FaCalendarAlt, FaHistory, FaHome, FaPlus, FaSignOutAlt, FaTicketAlt, FaUserCircle, FaUsers, FaUserShield } from 'react-icons/fa';
 
 
-const OrganizerSidebar = () => {
+const DashboardSidebar = () => {
+    const pathname = usePathname();
     const handleLogout = () => {
 
     }
@@ -16,17 +18,19 @@ const OrganizerSidebar = () => {
 
     const organizerMenu = [
         { key: "overview", label: "Overview", icon: FaUsers, href: "/dashboard/organizer" },
-        { key: "organization", label: "Organization", icon: FaBuilding, 
-            href:"/dashboard/organizer/organization" },
+        {
+            key: "organization", label: "Organization", icon: FaBuilding,
+            href: "/dashboard/organizer/organization"
+        },
         { key: "add-event", label: "Add Event", icon: FaPlus, href: "/dashboard/organizer/add-event" },
         { key: "manage-events", label: "Manage Events", icon: FaCalendarAlt, href: "/dashboard/organizer/manage-events" },
         { key: "attendees", label: "Attendees", icon: FaUsers, href: "/dashboard/organizer/attendees" },
     ];
 
     const attendeeMenu = [
-        { key: "overview", label: "Overview", icon: FaUserCircle, href: "/dashboard/overview" },
-        { key: "tickets", label: "My Tickets", icon: FaTicketAlt, href: "/dashboard/tickets" },
-        { key: "payments", label: "Payments", icon: FaHistory, href: "/dashboard/payments" },
+        { key: "overview", label: "Overview", icon: FaUserCircle, href: "/dashboard/attendee" },
+        { key: "tickets", label: "My Tickets", icon: FaTicketAlt, href: "/dashboard/attendee/tickets" },
+        { key: "payments", label: "Payments", icon: FaHistory, href: "/dashboard/attendee/payments" },
     ];
 
     const adminMenu = [
@@ -41,10 +45,10 @@ const OrganizerSidebar = () => {
         <div className='min-h-screen flex '>
             <aside className='w-64 border-r min-h-screen'>
                 <div className="h-full flex flex-col bg-slate-950/80 backdrop-blur-xl">
-                        {/* Brand / Logo */}
-                        <div className="px-6 py-5  border-b border-white/5">
-                            <Logo />
-                        </div>
+                    {/* Brand / Logo */}
+                    <div className="px-6 py-5  border-b border-white/5">
+                        <Logo />
+                    </div>
 
                     {/* User Profile */}
                     <div className="px-6 py-5 border-b border-white/5">
@@ -75,19 +79,43 @@ const OrganizerSidebar = () => {
                             menuItems?.map(({ key, label, icon: Icon, href }) => {
                                 return (
 
+                                    // <Link
+                                    //     key={key}
+                                    //     href={href}
+                                    //     // href={targetPath}
+                                    //     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-400 hover:text-white hover:bg-white/5`}>
+                                    //     <span className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-white/5 text-slate-400"}`}>
+
+                                    //         <Icon size={20}></Icon>
+                                    //     </span>
+                                    //     <span>{label}</span>
+
+                                    //     {/* {isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-400" />} */}
+                                    // </Link>
+
+
+
                                     <Link
                                         key={key}
                                         href={href}
-                                        // href={targetPath}
-                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-400 hover:text-white hover:bg-white/5`}>
-                                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-white/5 text-slate-400"}`}>
-
-                                            <Icon size={20}></Icon>
+                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer ${pathname === href
+                                                ? "text-white bg-white/7"
+                                                : "text-slate-400 hover:text-white hover:bg-white/5"
+                                            }`}
+                                    >
+                                        <span
+                                            className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${pathname === href
+                                                    ? "bg-white/5 text-white"
+                                                    : "bg-white/5 text-slate-400"
+                                                }`}
+                                        >
+                                            <Icon size={20} />
                                         </span>
-                                        <span>{label}</span>
 
-                                        {/* {isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-400" />} */}
+                                        <span>{label}</span>
                                     </Link>
+
+
                                 )
                             })
                         }
@@ -117,4 +145,4 @@ const OrganizerSidebar = () => {
     );
 };
 
-export default OrganizerSidebar;
+export default DashboardSidebar;

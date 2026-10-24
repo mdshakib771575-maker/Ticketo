@@ -26,7 +26,8 @@ const OrganizerOverviewPage = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            body:JSON.stringify({type:"subscription"})
         })
         const data = await res.json()
         console.log(data);
