@@ -4,20 +4,7 @@ import { Card, Button } from "@heroui/react";
 import Image from "next/image";
 
 const MOCK_ORGS = [
-  {
-    _id: "1",
-    organizationName: "TechEvents Corp",
-    logo: "https://images.unsplash.com/photo-1549880181-56a44cf8a4a1",
-    description: "Hosting global developer conferences and software hacking marathons.",
-    website: "techevents.corp"
-  },
-  {
-    _id: "2",
-    organizationName: "Nightlife Productions",
-    logo: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
-    description: "Premium concerts, electronic dance music festivals and outdoor events.",
-    website: "nightlifeprod.com"
-  },
+ 
   {
     _id: "3",
     organizationName: "Culinary Group",
@@ -31,13 +18,28 @@ const MOCK_ORGS = [
     logo: "https://images.unsplash.com/photo-1513364776144-60967b0f800f",
     description: "Art galleries, film screenings and theatrical performances.",
     website: "creativelabs.io"
-  }
+  },
+   {
+    _id: "1",
+    organizationName: "TechEvents Corp",
+    logo: "https://i.ibb.co.com/cS7L2Ytr/avatarjpg.jpg",
+    description: "Hosting global developer conferences and software hacking marathons.",
+    website: "techevents.corp"
+  },
+ 
+   {
+    _id: "2",
+    organizationName: "Nightlife Productions",
+    logo: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
+    description: "Premium concerts, electronic dance music festivals and outdoor events.",
+    website: "nightlifeprod.com"
+  },
 ];
 
 export default function TopOrganizers({ featuredOrgs = MOCK_ORGS }) {
   const orgs = featuredOrgs && featuredOrgs.length > 0 ? featuredOrgs : MOCK_ORGS;
   return (
-    <section className="py-24 bg-slate-950/40 border-y border-white/5 w-full">
+    <section className="py-20 bg-slate-950/40 border-y border-white/5 w-full">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-white md:text-4xl">Top Organizers</h2>

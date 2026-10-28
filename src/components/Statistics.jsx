@@ -2,7 +2,7 @@
 
 export default function Statistics({ stats }) {
   return (
-    <section className="py-20 bg-gradient-to-r from-pink-900/10 via-indigo-900/10 to-transparent border-t border-white/5 w-full">
+    <section className="py-20 mt-5 mb-5 bg-gradient-to-r from-pink-900/10 via-indigo-900/10 to-transparent border-t border-white/5 w-full">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
         <div className="space-y-2">
           <span className="text-5xl font-extrabold text-transparent bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text">
@@ -11,7 +11,7 @@ export default function Statistics({ stats }) {
           <p className="text-slate-300 font-semibold text-sm uppercase tracking-wider">Premium Events Held</p>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 ">
           <span className="text-5xl font-extrabold text-transparent bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text">
             {stats.totalAttendees.toLocaleString()}+
           </span>

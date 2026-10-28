@@ -18,3 +18,9 @@ export const GetDetailEvent = async (id) => {
    
     return result;
 }
+
+
+export const fetchFeaturedEvents = async () => {
+  const result = await serverFetch(`/api/all-events`);
+  return result;
+};

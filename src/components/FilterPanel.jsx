@@ -38,7 +38,7 @@ export default function FilterPanel() {
 
 
   return (
-    <Card className="relative overflow-hidden bg-slate-950/40 border border-white/10 backdrop-blur-2xl p-5 shadow-2xl rounded-3xl" radius="none">
+    <Card className="relative overflow-hidden bg-slate-950/40 border border-white/10 backdrop-blur-2xl p-5 shadow-2xl rounded-3xl mb-18" radius="none">
       {/* Decorative gradient glow behind the panel */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-500/10 via-purple-600/5 to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-indigo-500/10 via-indigo-600/5 to-transparent blur-3xl pointer-events-none -z-10" />

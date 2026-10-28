@@ -83,7 +83,7 @@ export default function Navbar() {
               <Link href={'/login'}>
                 <button
 
-                  className="inline-flex items-center justify-center font-semibold text-xs text-slate-300 hover:text-white h-9 px-4 rounded-xl hover:bg-white/5 transition"
+                  className="inline-flex items-center justify-center font-semibold text-xs text-slate-300 hover:text-white h-9 px-4 rounded-xl bg-white/5 hover:bg-white/10 transition hover:cursor-pointer"
                 >
                   Login
                 </button>

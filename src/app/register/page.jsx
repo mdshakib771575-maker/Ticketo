@@ -23,6 +23,7 @@ import Logo from "@/components/Logo";
 import { authClient } from "@/lib/auth-client";
 import { uploadImage } from "@/utils/UploadImage";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();

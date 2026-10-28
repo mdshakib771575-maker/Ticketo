@@ -11,7 +11,7 @@ export default  function BrowseEventsClientPage({events}) {
     return (
         <div className="min-h-screen py-4 px-6 w-11/12 mx-auto  space-y-12">
             {/* HEADER */}
-            <div className=" space-y-2">
+            <div className=" space-y-2 mt-10">
                 <h1 className="text-4xl font-extrabold text-center  tracking-tight text-white">Browse Premium Events</h1>
                 <p className="text-slate-400 text-sm  text-center flex justify-center">
                     Search, filter, and discover state-of-the-art events. Instant Stripe booking guarantees your seat.
@@ -19,7 +19,7 @@ export default  function BrowseEventsClientPage({events}) {
             </div>
 
             {/* Interactive client-side filters wrapped in Suspense */}
-            <Suspense fallback={<div className="h-28 w-full glass animate-pulse rounded-2xl" />}>
+            <Suspense fallback={<div className="h-28 w-full glass animate-pulse rounded-2xl " />}>
                 <FilterPanel />
             </Suspense>
 
@@ -38,7 +38,7 @@ export default  function BrowseEventsClientPage({events}) {
                     ))}
                 </div>
             }>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
                     {events.map((event) => (
                         <EventCard key={event._id} event={event} buttonText="View Details" />
                     ))}

@@ -1,8 +1,10 @@
+import FeaturedEvents from "@/components/FeaturedEvents";
 import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
 import Testimonials from "@/components/Testimonials";
+import TopOrganizers from "@/components/TopOrganizers";
 import WhyChoose from "@/components/WhyChoose";
-import { ClientPageRoot } from "next/dist/client/components/client-page";
+
 
 export default async function HomePage() {
 
@@ -14,8 +16,10 @@ export default async function HomePage() {
   return (
     <div>
      <Hero></Hero>
+     <FeaturedEvents></FeaturedEvents>
      <WhyChoose></WhyChoose>
      <Statistics stats={stats}></Statistics>
+      <TopOrganizers />
      <Testimonials></Testimonials>
     </div>
   );
