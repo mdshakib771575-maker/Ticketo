@@ -4,8 +4,8 @@ import { FaAward, FaShieldAlt, FaUsers } from "react-icons/fa";
 
 export default function WhyChoose() {
   return (
-    <section className="pb-10  mx-auto  w-11/12">
-      <div className="text-center pb-5">
+    <section className="pb-18 pt-10 mx-auto  w-11/12">
+      <div className="text-center pb-15">
         <h2 className="text-3xl font-bold text-white md:text-4xl">Why Choose Eventora</h2>
         <p className="text-slate-400 max-w-xl mx-auto text-sm mt-3">
           Delivering an elite and state-of-the-art event management system that empowers everyone.

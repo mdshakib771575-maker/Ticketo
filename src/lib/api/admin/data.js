@@ -12,3 +12,9 @@ export const FetchPnadingEvents = async () => {
   console.log(result);
   return result;
 };
+
+export const FetchAllPayments = async () => {
+  const result = await serverFetch("/api/admin/payments");
+  console.log(result);
+  return result;
+};

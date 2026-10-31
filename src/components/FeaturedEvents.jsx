@@ -12,7 +12,7 @@ export default async function FeaturedEvents() {
   return (
     <section className="py-15 max-w-7xl mx-auto px-6 w-full">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <div className="text-center mx-auto pb-10">
+        <div className="text-center mx-auto pb-15">
           <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">Featured Events</h2>
           <p className="text-slate-400 text-sm mt-2">Explore the hottest and most popular events happening this week.</p>
         </div>

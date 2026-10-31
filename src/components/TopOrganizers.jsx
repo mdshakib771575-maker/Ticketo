@@ -39,9 +39,9 @@ const MOCK_ORGS = [
 export default function TopOrganizers({ featuredOrgs = MOCK_ORGS }) {
   const orgs = featuredOrgs && featuredOrgs.length > 0 ? featuredOrgs : MOCK_ORGS;
   return (
-    <section className="py-20 bg-slate-950/40 border-y border-white/5 w-11/12 mx-auto">
+    <section className="py-24 bg-slate-950/40 border-y border-white/5 w-11/12 mx-auto">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <h2 className="text-3xl font-bold text-white md:text-4xl">Top Organizers</h2>
           <p className="text-slate-400 max-w-xl mx-auto text-sm mt-3">
             Powering the community. Meet the featured organizations behind the best local and national events.
