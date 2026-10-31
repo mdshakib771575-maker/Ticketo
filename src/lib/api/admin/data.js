@@ -5,3 +5,10 @@ export const FetchAllUsers = async () => {
   console.log(result);
   return result;
 };
+
+
+export const FetchPnadingEvents = async () => {
+  const result = await serverFetch("/api/admin/events/pending-events");
+  console.log(result);
+  return result;
+};

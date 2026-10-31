@@ -31,7 +31,7 @@ const AddEventPage = () => {
         const result = await addEvent(AddData);
         // console.log(result)
         if(result.insertedId){
-            toast.success("Event Added Successfully")
+            toast.success("Event Host Successfully")
             redirect("/dashboard/organizer/manage-events")
         }else{
            toast.error( result.message||"Event Not Created...")

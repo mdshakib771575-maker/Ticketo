@@ -1,183 +1,146 @@
 
-// "use client";
+"use client";
 
-// import {
-//     Card,
-//     Table,
-//     TableContent,
-//     TableHeader,
-//     TableColumn,
-//     TableBody,
-//     TableRow,
-//     TableCell,
-//     Chip,
-//     Button,
-// } from "@heroui/react";
+import {
+    Card,
+    Table,
+    TableContent,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    Button,
+} from "@heroui/react";
+import { useRouter } from "next/navigation";
 
-// import { useState } from "react";
-// import {
-//     ApproveEvent,
-//     RejectEvent,
-// } from "@/lib/api/admin/action";
+import { useState } from "react";
+import {
+    AdminApproveEvent,
+    ApproveEvent,
+   
+} from "@/lib/api/admin/action";
+import { AdminRejcetEventAlertgPage } from "./AdminEventRejectAlert";
 
-// export default function PendingEventsTable({ pendingEvents }) {
-//     const [events, setEvents] = useState(pendingEvents);
-//     const [loadingId, setLoadingId] = useState(null);
+export default function PendingEventsTable({ pendingEvents }) {
+    
+    // const [events, setEvents] = useState(pendingEvents);
+    const [loadingId, setLoadingId] = useState(null);
+    const router = useRouter();
 
-//     // Approve Event
-//     const handleApprove = async (id) => {
-//         try {
-//             setLoadingId(id);
+    // Approve Event
+ const handleApprove = async (id) => {
+    try {
+        setLoadingId(id);
 
-//             const result = await ApproveEvent(id);
+        const result = await AdminApproveEvent(id);
 
-//             if (!result.success) {
-//                 throw new Error(result.message);
-//             }
+        if (!result.success) {
+            throw new Error(result.message);
+        }
 
-//             setEvents((prev) =>
-//                 prev.map((event) =>
-//                     event._id === id
-//                         ? { ...event, status: "approved" }
-//                         : event
-//                 )
-//             );
+        router.refresh();
 
-//         } catch (error) {
-//             alert(error.message || "Approval failed");
-//         } finally {
-//             setLoadingId(null);
-//         }
-//     };
+    } catch (error) {
+        alert(error.message || "Approval failed");
+        setLoadingId(null);
+    }
+};
 
-//     // Reject Event
-//     // const handleReject = async (id) => {
-//     //     const confirmReject = window.confirm(
-//     //         "Are you sure you want to reject this event?"
-//     //     );
 
-//     //     if (!confirmReject) return;
+    return (
+        <Card className="rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-2xl backdrop-blur-xl">
 
-//     //     try {
-//     //         setLoadingId(id);
+            <div className="overflow-x-auto">
+                <Table aria-label="Pending events table">
 
-//     //         const result = await RejectEvent(id);
+                    <TableContent>
+                        <TableHeader>
+                            <TableColumn key="title" isRowHeader>
+                                EVENT TITLE
+                            </TableColumn>
 
-//     //         if (!result.success) {
-//     //             throw new Error(result.message);
-//     //         }
+                            <TableColumn key="category">
+                                CATEGORY
+                            </TableColumn>
 
-//     //         setEvents((prev) =>
-//     //             prev.filter((event) => event._id !== id)
-//     //         );
+                            <TableColumn key="organizer">
+                                ORGANIZER NAME
+                            </TableColumn>
 
-//     //     } catch (error) {
-//     //         alert(error.message || "Reject failed");
-//     //     } finally {
-//     //         setLoadingId(null);
-//     //     }
-//     // };
+                            <TableColumn key="date">
+                                EVENT DATE
+                            </TableColumn>
 
-//     return (
-//         <Card className="rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-2xl backdrop-blur-xl">
+                            <TableColumn key="action">
+                                ACTION
+                            </TableColumn>
+                        </TableHeader>
 
-//             <div className="overflow-x-auto">
-//                 <Table aria-label="Pending events table">
+                        <TableBody emptyContent="No pending events found.">
 
-//                     <TableContent>
-//                         <TableHeader>
-//                             <TableColumn key="title" isRowHeader>
-//                                 EVENT TITLE
-//                             </TableColumn>
+                            {pendingEvents.map((event) => (
+                                <TableRow key={event._id}>
 
-//                             <TableColumn key="category">
-//                                 CATEGORY
-//                             </TableColumn>
+                                    <TableCell>
+                                        <span className="font-semibold text-white">
+                                            {event.title}
+                                        </span>
+                                    </TableCell>
 
-//                             <TableColumn key="organizer">
-//                                 ORGANIZER NAME
-//                             </TableColumn>
+                                    <TableCell>
+                                        <span className="text-slate-400">
+                                            {event.category}
+                                        </span>
+                                    </TableCell>
 
-//                             <TableColumn key="date">
-//                                 EVENT DATE
-//                             </TableColumn>
+                                    <TableCell>
+                                        <span className="text-slate-400">
+                                            {event.organizerName || event.organizerEmail}
+                                        </span>
+                                    </TableCell>
 
-//                             <TableColumn key="action">
-//                                 ACTION
-//                             </TableColumn>
-//                         </TableHeader>
+                                    <TableCell>
+                                        <span className="text-slate-400">
+                                            {event.date}
+                                        </span>
+                                    </TableCell>
 
-//                         <TableBody emptyContent="No pending events found.">
+                                    <TableCell>
+                                        <div className="flex items-center gap-2">
 
-//                             {events.map((event) => (
-//                                 <TableRow key={event._id}>
+                                            <Button
+                                            className={"bg-green-500 text-white border"}
+                                                size="sm"
+                                                color="success"
+                                                variant="flat"
+                                                isDisabled={
+                                                    event.status === "approved" ||
+                                                    loadingId === event._id
+                                                }
+                                                onPress={() => handleApprove(event._id)}
+                                            >
+                                                {loadingId === event._id
+                                                    ? "Processing..."
+                                                    : event.status === "approved"
+                                                        ? "Approved"
+                                                        : "Approve"}
+                                            </Button>
 
-//                                     <TableCell>
-//                                         <span className="font-semibold text-white">
-//                                             {event.title}
-//                                         </span>
-//                                     </TableCell>
+                                            {event.status === "pending" && (
+                                               <AdminRejcetEventAlertgPage event={event}></AdminRejcetEventAlertgPage>
+                                            )}
 
-//                                     <TableCell>
-//                                         <span className="text-slate-400">
-//                                             {event.category}
-//                                         </span>
-//                                     </TableCell>
+                                        </div>
+                                    </TableCell>
 
-//                                     <TableCell>
-//                                         <span className="text-slate-400">
-//                                             {event.organizerName || event.organizerEmail}
-//                                         </span>
-//                                     </TableCell>
+                                </TableRow>
+                            ))}
 
-//                                     <TableCell>
-//                                         <span className="text-slate-400">
-//                                             {event.date}
-//                                         </span>
-//                                     </TableCell>
-
-//                                     <TableCell>
-//                                         <div className="flex items-center gap-2">
-
-//                                             <Button
-//                                                 size="sm"
-//                                                 color="success"
-//                                                 variant="flat"
-//                                                 isDisabled={
-//                                                     event.status === "approved" ||
-//                                                     loadingId === event._id
-//                                                 }
-//                                                 onPress={() => handleApprove(event._id)}
-//                                             >
-//                                                 {loadingId === event._id
-//                                                     ? "Processing..."
-//                                                     : event.status === "approved"
-//                                                         ? "Approved"
-//                                                         : "Approve"}
-//                                             </Button>
-
-//                                             {event.status === "pending" && (
-//                                                 <Button
-//                                                     size="sm"
-//                                                     color="danger"
-//                                                     variant="flat"
-//                                                     isDisabled={loadingId === event._id}
-//                                                     // onPress={() => handleReject(event._id)}
-//                                                 >
-//                                                     Reject
-//                                                 </Button>
-//                                             )}
-
-//                                         </div>
-//                                     </TableCell>
-
-//                                 </TableRow>
-//                             ))}
-
-//                         </TableBody>
-//                     </TableContent>
-//                 </Table>
-//             </div>
-//         </Card>
-//     );
-// }
+                        </TableBody>
+                    </TableContent>
+                </Table>
+            </div>
+        </Card>
+    );
+}

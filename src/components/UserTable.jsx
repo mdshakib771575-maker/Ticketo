@@ -76,7 +76,7 @@ export default function AllUsersTable({allUser}) {
                                             >
                                                 Delete
                                             </Button> */}
-                                          <AlertDeleteDialogPage  id={user._id} ></AlertDeleteDialogPage>
+                                          <AlertDeleteDialogPage  user={user} ></AlertDeleteDialogPage>
                                         </TableCell>
                                     </TableRow>
                                 ))}

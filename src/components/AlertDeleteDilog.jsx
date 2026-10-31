@@ -4,12 +4,12 @@ import { DeleteUser } from "@/lib/api/admin/action";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-export function AlertDeleteDialogPage({ id }) {
+export function AlertDeleteDialogPage({ user }) {
   const router = useRouter();
 
 const handleDelete = async () => {
   try {
-    const result = await DeleteUser(id);
+    const result = await DeleteUser(user._id);
 
     console.log(result);
 
@@ -32,13 +32,13 @@ const handleDelete = async () => {
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
               <AlertDialog.Heading>
-                Delete User Permanently?
+                Delete {user.name} Permanently?
               </AlertDialog.Heading>
             </AlertDialog.Header>
 
             <AlertDialog.Body>
               <p>
-                Are you sure you want to delete this user?
+                Are you sure you want to delete this {user.email}?
                 This action cannot be undone.
               </p>
             </AlertDialog.Body>
