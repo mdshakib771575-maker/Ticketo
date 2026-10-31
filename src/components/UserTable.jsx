@@ -1,7 +1,6 @@
 
 "use client";
 
-import { useState } from "react";
 import {
     Card,
     Table,
@@ -14,19 +13,13 @@ import {
     Chip,
     Button,
 } from "@heroui/react";
+import { AlertDeleteDialogPage } from "./AlertDeleteDilog";
+
 
 
 
 export default function AllUsersTable({allUser}) {
     
-
-    const handleDelete = (id) => {
-        if (!window.confirm("Are you sure you want to delete this user?")) {
-            return;
-        }
-
-        setUsers((prev) => prev.filter((user) => user._id !== id));
-    };
 
     return (
         <Card className="rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-2xl backdrop-blur-xl">
@@ -75,14 +68,15 @@ export default function AllUsersTable({allUser}) {
                                         </TableCell>
 
                                         <TableCell>
-                                            <Button
+                                            {/* <Button
                                                 size="sm"
                                                 color="danger"
                                                 variant="flat"
                                                 className={"border text-red-500"}
                                             >
                                                 Delete
-                                            </Button>
+                                            </Button> */}
+                                          <AlertDeleteDialogPage  id={user._id} ></AlertDeleteDialogPage>
                                         </TableCell>
                                     </TableRow>
                                 ))}

@@ -39,7 +39,7 @@ const MOCK_ORGS = [
 export default function TopOrganizers({ featuredOrgs = MOCK_ORGS }) {
   const orgs = featuredOrgs && featuredOrgs.length > 0 ? featuredOrgs : MOCK_ORGS;
   return (
-    <section className="py-20 bg-slate-950/40 border-y border-white/5 w-full">
+    <section className="py-20 bg-slate-950/40 border-y border-white/5 w-11/12 mx-auto">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-white md:text-4xl">Top Organizers</h2>

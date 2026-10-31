@@ -6,7 +6,7 @@ import React from 'react';
 const AdminUserPage = async() => {
 
     const allUser = await FetchAllUsers();
-    console.log(allUser);
+    // console.log(allUser);
     return (
         <div>
               <DashboardHeading title="All Users" description="Shows All Users and Organizers"></DashboardHeading>

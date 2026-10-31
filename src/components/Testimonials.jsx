@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Testimonials() {
   return (
-    <section className="pb-20 pt-8 max-w-7xl mx-auto px-6 w-full">
+    <section className="pb-20 pt-8 max-w-7xl mx-auto px-6 w-11/12">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-white md:text-4xl font-sans">Client Testimonials</h2>
         <p className="text-slate-400 max-w-xl mx-auto text-sm mt-3">
